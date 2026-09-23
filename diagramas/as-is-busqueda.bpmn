@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="Definitions_1" targetNamespace="https://torpedos.example/bpmn" exporter="bpmn-js (https://bpmn.io)" exporterVersion="18.9.1">
+  <bpmn:collaboration id="Collaboration_1" name="AS-IS · Buscar y obtener apuntes (hipótesis por validar)">
+    <bpmn:participant id="Pool_E" name="Estudiante" processRef="Process_E" />
+    <bpmn:participant id="Pool_C" name="Comunidad estudiantil" processRef="Process_C" />
+    <bpmn:messageFlow id="Message_13" name="Solicitud" sourceRef="ask" targetRef="c0" />
+    <bpmn:messageFlow id="Message_14" name="Archivo o respuesta" sourceRef="respond" targetRef="recv" />
+  </bpmn:collaboration>
+  <bpmn:process id="Process_E" isExecutable="false">
+    <bpmn:documentation>HIPÓTESIS POR VALIDAR: se propone reconstruir con estudiantes la búsqueda en chats, la consulta a la comunidad y la respuesta. No hay tiempos observados ni garantía de revisión académica. Este diagrama no afirma que la comunidad responda siempre.</bpmn:documentation>
+    <bpmn:laneSet id="LaneSet_E">
+      <bpmn:lane id="Lane_E" name="Estudiante que consulta">
+        <bpmn:flowNodeRef>e0</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>search</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>found</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ask</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>recv</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>avail</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>save</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ok</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>no</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>prep</bpmn:flowNodeRef>
+      </bpmn:lane>
+    </bpmn:laneSet>
+    <bpmn:startEvent id="e0" name="Necesita material">
+      <bpmn:outgoing>Flow_1</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:userTask id="search" name="A06 · Buscar en chats y archivos disponibles">
+      <bpmn:incoming>Flow_prep</bpmn:incoming>
+      <bpmn:outgoing>Flow_2</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:exclusiveGateway id="found" name="¿Encuentra material pertinente?">
+      <bpmn:incoming>Flow_2</bpmn:incoming>
+      <bpmn:outgoing>Flow_9</bpmn:outgoing>
+      <bpmn:outgoing>Flow_10</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:userTask id="ask" name="A07 · Solicitar apunte a la comunidad">
+      <bpmn:incoming>Flow_10</bpmn:incoming>
+      <bpmn:outgoing>Flow_3</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:userTask id="recv" name="A08 · Recibir respuesta">
+      <bpmn:incoming>Flow_3</bpmn:incoming>
+      <bpmn:outgoing>Flow_4</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:exclusiveGateway id="avail" name="¿Recibió material útil?">
+      <bpmn:incoming>Flow_4</bpmn:incoming>
+      <bpmn:outgoing>Flow_11</bpmn:outgoing>
+      <bpmn:outgoing>Flow_12</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:userTask id="save" name="A09 · Guardar apunte encontrado">
+      <bpmn:incoming>Flow_9</bpmn:incoming>
+      <bpmn:incoming>Flow_11</bpmn:incoming>
+      <bpmn:outgoing>Flow_5</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:endEvent id="ok" name="Apunte obtenido sin revisión formal acreditada">
+      <bpmn:incoming>Flow_5</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:endEvent id="no" name="Búsqueda sin resultado">
+      <bpmn:incoming>Flow_12</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_1" sourceRef="e0" targetRef="prep" />
+    <bpmn:sequenceFlow id="Flow_2" sourceRef="search" targetRef="found" />
+    <bpmn:sequenceFlow id="Flow_3" sourceRef="ask" targetRef="recv" />
+    <bpmn:sequenceFlow id="Flow_4" sourceRef="recv" targetRef="avail" />
+    <bpmn:sequenceFlow id="Flow_5" sourceRef="save" targetRef="ok" />
+    <bpmn:sequenceFlow id="Flow_9" name="Sí" sourceRef="found" targetRef="save" />
+    <bpmn:sequenceFlow id="Flow_10" name="No" sourceRef="found" targetRef="ask" />
+    <bpmn:sequenceFlow id="Flow_11" name="Sí" sourceRef="avail" targetRef="save" />
+    <bpmn:sequenceFlow id="Flow_12" name="No" sourceRef="avail" targetRef="no" />
+    <bpmn:manualTask id="prep" name="A05 · Definir materia y unidad que necesita repasar">
+      <bpmn:documentation>Actividad cognitiva sin apoyo de un sistema. Paso propuesto para explicitar el objetivo de la búsqueda; confirmar con el participante.</bpmn:documentation>
+      <bpmn:incoming>Flow_1</bpmn:incoming>
+      <bpmn:outgoing>Flow_prep</bpmn:outgoing>
+    </bpmn:manualTask>
+    <bpmn:sequenceFlow id="Flow_prep" sourceRef="prep" targetRef="search" />
+  </bpmn:process>
+  <bpmn:process id="Process_C" isExecutable="false">
+    <bpmn:documentation>HIPÓTESIS POR VALIDAR: se propone reconstruir con estudiantes la búsqueda en chats, la consulta a la comunidad y la respuesta. No hay tiempos observados ni garantía de revisión académica. Este diagrama no afirma que la comunidad responda siempre.</bpmn:documentation>
+    <bpmn:laneSet id="LaneSet_C">
+      <bpmn:lane id="Lane_C" name="Gestión comunitaria actual">
+        <bpmn:flowNodeRef>c0</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>locate</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>respond</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ce</bpmn:flowNodeRef>
+      </bpmn:lane>
+    </bpmn:laneSet>
+    <bpmn:startEvent id="c0" name="Solicitud recibida">
+      <bpmn:outgoing>Flow_6</bpmn:outgoing>
+      <bpmn:messageEventDefinition id="c0_message" />
+    </bpmn:startEvent>
+    <bpmn:userTask id="locate" name="A10 · Buscar material y comprobar disponibilidad">
+      <bpmn:incoming>Flow_6</bpmn:incoming>
+      <bpmn:outgoing>Flow_7</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:userTask id="respond" name="A11 · Enviar archivo disponible o informar ausencia">
+      <bpmn:incoming>Flow_7</bpmn:incoming>
+      <bpmn:outgoing>Flow_8</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:endEvent id="ce" name="Consulta atendida">
+      <bpmn:incoming>Flow_8</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_6" sourceRef="c0" targetRef="locate" />
+    <bpmn:sequenceFlow id="Flow_7" sourceRef="locate" targetRef="respond" />
+    <bpmn:sequenceFlow id="Flow_8" sourceRef="respond" targetRef="ce" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="Diagram_1" name="AS-IS · Buscar y obtener apuntes (hipótesis por validar)">
+    <bpmndi:BPMNPlane id="Plane_1" bpmnElement="Collaboration_1">
+      <bpmndi:BPMNShape id="Pool_E_di" bpmnElement="Pool_E" isHorizontal="true">
+        <dc:Bounds x="40" y="60" width="2180" height="335" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_E_di" bpmnElement="Lane_E" isHorizontal="true">
+        <dc:Bounds x="70" y="60" width="2150" height="335" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="e0_di" bpmnElement="e0">
+        <dc:Bounds x="110" y="150" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="85" y="194" width="126" height="42" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="search_di" bpmnElement="search">
+        <dc:Bounds x="440" y="128" width="160" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="found_di" bpmnElement="found" isMarkerVisible="true">
+        <dc:Bounds x="660" y="143" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="615" y="201" width="140" height="42" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ask_di" bpmnElement="ask">
+        <dc:Bounds x="830" y="230" width="160" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="recv_di" bpmnElement="recv">
+        <dc:Bounds x="1520" y="230" width="160" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="avail_di" bpmnElement="avail" isMarkerVisible="true">
+        <dc:Bounds x="1740" y="245" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1695" y="303" width="140" height="42" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="save_di" bpmnElement="save">
+        <dc:Bounds x="1920" y="128" width="160" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ok_di" bpmnElement="ok">
+        <dc:Bounds x="2130" y="150" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="2085" y="194" width="126" height="42" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="no_di" bpmnElement="no">
+        <dc:Bounds x="1990" y="310" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1945" y="354" width="126" height="42" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="prep_di" bpmnElement="prep">
+        <dc:Bounds x="210" y="128" width="160" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_1_di" bpmnElement="Flow_1">
+        <di:waypoint x="146" y="168" />
+        <di:waypoint x="210" y="168" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_2_di" bpmnElement="Flow_2">
+        <di:waypoint x="600" y="168" />
+        <di:waypoint x="660" y="168" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_3_di" bpmnElement="Flow_3">
+        <di:waypoint x="990" y="270" />
+        <di:waypoint x="1520" y="270" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_4_di" bpmnElement="Flow_4">
+        <di:waypoint x="1680" y="270" />
+        <di:waypoint x="1740" y="270" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_5_di" bpmnElement="Flow_5">
+        <di:waypoint x="2080" y="168" />
+        <di:waypoint x="2130" y="168" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_9_di" bpmnElement="Flow_9">
+        <di:waypoint x="685" y="143" />
+        <di:waypoint x="685" y="95" />
+        <di:waypoint x="2000" y="95" />
+        <di:waypoint x="2000" y="128" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1110" y="65" width="120" height="32" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_10_di" bpmnElement="Flow_10">
+        <di:waypoint x="685" y="193" />
+        <di:waypoint x="685" y="270" />
+        <di:waypoint x="830" y="270" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="710" y="280" width="120" height="32" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_11_di" bpmnElement="Flow_11">
+        <di:waypoint x="1790" y="270" />
+        <di:waypoint x="1870" y="270" />
+        <di:waypoint x="1870" y="168" />
+        <di:waypoint x="1920" y="168" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1790" y="210" width="120" height="32" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_12_di" bpmnElement="Flow_12">
+        <di:waypoint x="1765" y="295" />
+        <di:waypoint x="1765" y="328" />
+        <di:waypoint x="1990" y="328" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1820" y="338" width="120" height="32" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_prep_di" bpmnElement="Flow_prep">
+        <di:waypoint x="370" y="168" />
+        <di:waypoint x="440" y="168" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="Pool_C_di" bpmnElement="Pool_C" isHorizontal="true">
+        <dc:Bounds x="40" y="420" width="2180" height="360" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_C_di" bpmnElement="Lane_C" isHorizontal="true">
+        <dc:Bounds x="70" y="420" width="2150" height="360" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="c0_di" bpmnElement="c0">
+        <dc:Bounds x="892" y="530" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="847" y="574" width="126" height="42" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="locate_di" bpmnElement="locate">
+        <dc:Bounds x="1050" y="508" width="160" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="respond_di" bpmnElement="respond">
+        <dc:Bounds x="1520" y="508" width="160" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ce_di" bpmnElement="ce">
+        <dc:Bounds x="1760" y="530" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1715" y="574" width="126" height="42" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_6_di" bpmnElement="Flow_6">
+        <di:waypoint x="928" y="548" />
+        <di:waypoint x="1050" y="548" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_7_di" bpmnElement="Flow_7">
+        <di:waypoint x="1210" y="548" />
+        <di:waypoint x="1520" y="548" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_8_di" bpmnElement="Flow_8">
+        <di:waypoint x="1680" y="548" />
+        <di:waypoint x="1760" y="548" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Message_13_di" bpmnElement="Message_13">
+        <di:waypoint x="910" y="310" />
+        <di:waypoint x="910" y="530" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="930" y="390" width="120" height="32" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Message_14_di" bpmnElement="Message_14">
+        <di:waypoint x="1600" y="508" />
+        <di:waypoint x="1600" y="310" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1610" y="390" width="120" height="32" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

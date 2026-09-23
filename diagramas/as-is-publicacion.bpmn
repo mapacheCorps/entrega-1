@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="Definitions_1" targetNamespace="https://torpedos.example/bpmn" exporter="bpmn-js (https://bpmn.io)" exporterVersion="18.9.1">
+  <bpmn:collaboration id="Collaboration_1" name="AS-IS · Compartir apuntes por WhatsApp">
+    <bpmn:participant id="Pool_E" name="Estudiante" processRef="Process_E" />
+    <bpmn:participant id="Pool_C" name="Comunidad estudiantil" processRef="Process_C" />
+    <bpmn:messageFlow id="Message_7" name="Apunte y datos" sourceRef="es" targetRef="c0" />
+  </bpmn:collaboration>
+  <bpmn:process id="Process_E" isExecutable="false">
+    <bpmn:documentation>Descripción provisional basada en el modelo del usuario. Validar recepción y organización manual con la comunidad. No presupone revisión académica formal.</bpmn:documentation>
+    <bpmn:laneSet id="LaneSet_E">
+      <bpmn:lane id="Lane_E" name="Autor del aporte">
+        <bpmn:flowNodeRef>e0</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>e1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>e2</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>es</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ee</bpmn:flowNodeRef>
+      </bpmn:lane>
+    </bpmn:laneSet>
+    <bpmn:startEvent id="e0" name="Apunte preparado">
+      <bpmn:outgoing>Flow_1</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:userTask id="e1" name="A01 · Seleccionar apunte e identificar ramo">
+      <bpmn:incoming>Flow_1</bpmn:incoming>
+      <bpmn:outgoing>Flow_2</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:userTask id="e2" name="A02 · Elegir chat de WhatsApp de la comunidad">
+      <bpmn:incoming>Flow_2</bpmn:incoming>
+      <bpmn:outgoing>Flow_3</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:userTask id="es" name="A03 · Enviar apunte y datos por WhatsApp">
+      <bpmn:incoming>Flow_3</bpmn:incoming>
+      <bpmn:outgoing>Flow_4</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:endEvent id="ee" name="Apunte enviado">
+      <bpmn:incoming>Flow_4</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_1" sourceRef="e0" targetRef="e1" />
+    <bpmn:sequenceFlow id="Flow_2" sourceRef="e1" targetRef="e2" />
+    <bpmn:sequenceFlow id="Flow_3" sourceRef="e2" targetRef="es" />
+    <bpmn:sequenceFlow id="Flow_4" sourceRef="es" targetRef="ee" />
+  </bpmn:process>
+  <bpmn:process id="Process_C" isExecutable="false">
+    <bpmn:documentation>Descripción provisional basada en el modelo del usuario. Validar recepción y organización manual con la comunidad. No presupone revisión académica formal.</bpmn:documentation>
+    <bpmn:laneSet id="LaneSet_C">
+      <bpmn:lane id="Lane_C" name="Gestión comunitaria actual">
+        <bpmn:flowNodeRef>c0</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>c1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ce</bpmn:flowNodeRef>
+      </bpmn:lane>
+    </bpmn:laneSet>
+    <bpmn:startEvent id="c0" name="Apunte recibido">
+      <bpmn:outgoing>Flow_5</bpmn:outgoing>
+      <bpmn:messageEventDefinition id="c0_message" />
+    </bpmn:startEvent>
+    <bpmn:userTask id="c1" name="A04 · Guardar y organizar manualmente el apunte">
+      <bpmn:incoming>Flow_5</bpmn:incoming>
+      <bpmn:outgoing>Flow_6</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:endEvent id="ce" name="Apunte guardado en la comunidad">
+      <bpmn:incoming>Flow_6</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_5" sourceRef="c0" targetRef="c1" />
+    <bpmn:sequenceFlow id="Flow_6" sourceRef="c1" targetRef="ce" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="Diagram_1" name="AS-IS · Compartir apuntes por WhatsApp">
+    <bpmndi:BPMNPlane id="Plane_1" bpmnElement="Collaboration_1">
+      <bpmndi:BPMNShape id="Pool_E_di" bpmnElement="Pool_E" isHorizontal="true">
+        <dc:Bounds x="40" y="60" width="1420" height="275" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_E_di" bpmnElement="Lane_E" isHorizontal="true">
+        <dc:Bounds x="70" y="60" width="1390" height="275" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="e0_di" bpmnElement="e0">
+        <dc:Bounds x="110" y="140" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="85" y="184" width="126" height="42" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="e1_di" bpmnElement="e1">
+        <dc:Bounds x="210" y="118" width="160" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="e2_di" bpmnElement="e2">
+        <dc:Bounds x="430" y="118" width="160" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="es_di" bpmnElement="es">
+        <dc:Bounds x="650" y="118" width="160" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ee_di" bpmnElement="ee">
+        <dc:Bounds x="930" y="140" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="885" y="184" width="126" height="42" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_1_di" bpmnElement="Flow_1">
+        <di:waypoint x="146" y="158" />
+        <di:waypoint x="210" y="158" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_2_di" bpmnElement="Flow_2">
+        <di:waypoint x="370" y="158" />
+        <di:waypoint x="430" y="158" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_3_di" bpmnElement="Flow_3">
+        <di:waypoint x="590" y="158" />
+        <di:waypoint x="650" y="158" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_4_di" bpmnElement="Flow_4">
+        <di:waypoint x="810" y="158" />
+        <di:waypoint x="930" y="158" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="Pool_C_di" bpmnElement="Pool_C" isHorizontal="true">
+        <dc:Bounds x="40" y="360" width="1420" height="300" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_C_di" bpmnElement="Lane_C" isHorizontal="true">
+        <dc:Bounds x="70" y="360" width="1390" height="300" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="c0_di" bpmnElement="c0">
+        <dc:Bounds x="712" y="440" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="667" y="484" width="126" height="42" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="c1_di" bpmnElement="c1">
+        <dc:Bounds x="850" y="418" width="160" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ce_di" bpmnElement="ce">
+        <dc:Bounds x="1160" y="440" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1115" y="484" width="126" height="42" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_5_di" bpmnElement="Flow_5">
+        <di:waypoint x="748" y="458" />
+        <di:waypoint x="850" y="458" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_6_di" bpmnElement="Flow_6">
+        <di:waypoint x="1010" y="458" />
+        <di:waypoint x="1160" y="458" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Message_7_di" bpmnElement="Message_7">
+        <di:waypoint x="730" y="198" />
+        <di:waypoint x="730" y="440" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="750" y="280" width="120" height="32" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

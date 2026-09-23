@@ -1,0 +1,334 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="Definitions_1" targetNamespace="https://torpedos.example/bpmn" exporter="bpmn-js (https://bpmn.io)" exporterVersion="18.9.1">
+  <bpmn:collaboration id="Collaboration_1" name="TO-BE · Reportar errores y mantener versiones">
+    <bpmn:participant id="Pool_E" name="Estudiante" processRef="Process_E" />
+    <bpmn:participant id="Pool_C" name="Comunidad estudiantil" processRef="Process_C" />
+    <bpmn:messageFlow id="Message_19" name="Reporte y versión" sourceRef="send" targetRef="c0" />
+    <bpmn:messageFlow id="Message_20" name="Resolución" sourceRef="notify" targetRef="receive" />
+  </bpmn:collaboration>
+  <bpmn:process id="Process_E" isExecutable="false">
+    <bpmn:documentation>Propuesta. Cada reporte identifica apunte y versión y registra seguimiento. Un reporte no se considera error confirmado sin revisión. Una nueva versión exige evidencia de revisión y conserva el historial de la anterior. Si el equipo no puede corregir un error confirmado, retira la versión afectada y deja constancia; una contribución del autor se tramita por el proceso de publicación. No se elimina el historial.</bpmn:documentation>
+    <bpmn:laneSet id="LaneSet_E">
+      <bpmn:lane id="Lane_E" name="Estudiante que reporta">
+        <bpmn:flowNodeRef>e0</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>detail</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>send</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>receive</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ee</bpmn:flowNodeRef>
+      </bpmn:lane>
+    </bpmn:laneSet>
+    <bpmn:startEvent id="e0" name="Detecta posible error">
+      <bpmn:outgoing>Flow_1</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:userTask id="detail" name="E01 · Identificar apunte, versión y explicar el error">
+      <bpmn:incoming>Flow_1</bpmn:incoming>
+      <bpmn:outgoing>Flow_2</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:userTask id="send" name="E02 · Enviar reporte">
+      <bpmn:incoming>Flow_2</bpmn:incoming>
+      <bpmn:outgoing>Flow_3</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:userTask id="receive" name="E10 · Recibir resolución y enlace o motivo">
+      <bpmn:incoming>Flow_3</bpmn:incoming>
+      <bpmn:outgoing>Flow_4</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:endEvent id="ee" name="Resultado conocido">
+      <bpmn:incoming>Flow_4</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_1" sourceRef="e0" targetRef="detail" />
+    <bpmn:sequenceFlow id="Flow_2" sourceRef="detail" targetRef="send" />
+    <bpmn:sequenceFlow id="Flow_3" sourceRef="send" targetRef="receive" />
+    <bpmn:sequenceFlow id="Flow_4" sourceRef="receive" targetRef="ee" />
+  </bpmn:process>
+  <bpmn:process id="Process_C" isExecutable="false">
+    <bpmn:documentation>Propuesta. Cada reporte identifica apunte y versión y registra seguimiento. Un reporte no se considera error confirmado sin revisión. Una nueva versión exige evidencia de revisión y conserva el historial de la anterior. Si el equipo no puede corregir un error confirmado, retira la versión afectada y deja constancia; una contribución del autor se tramita por el proceso de publicación. No se elimina el historial.</bpmn:documentation>
+    <bpmn:laneSet id="LaneSet_C">
+      <bpmn:lane id="Lane_C" name="Administración y operación de la plataforma">
+        <bpmn:flowNodeRef>c0</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>register</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>review</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>confirmed</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>dismiss</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>flag</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>can</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>fix</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>publish</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>withdraw</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>merge</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>notify</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ce</bpmn:flowNodeRef>
+      </bpmn:lane>
+    </bpmn:laneSet>
+    <bpmn:startEvent id="c0" name="Reporte recibido">
+      <bpmn:outgoing>Flow_5</bpmn:outgoing>
+      <bpmn:messageEventDefinition id="c0_message" />
+    </bpmn:startEvent>
+    <bpmn:serviceTask id="register" name="E03 · Registrar caso y asignar revisor competente">
+      <bpmn:incoming>Flow_5</bpmn:incoming>
+      <bpmn:outgoing>Flow_6</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:userTask id="review" name="E04 · Analizar reporte y contrastar contenido">
+      <bpmn:incoming>Flow_6</bpmn:incoming>
+      <bpmn:outgoing>Flow_7</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:exclusiveGateway id="confirmed" name="¿Error confirmado?">
+      <bpmn:incoming>Flow_7</bpmn:incoming>
+      <bpmn:outgoing>Flow_12</bpmn:outgoing>
+      <bpmn:outgoing>Flow_13</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:userTask id="dismiss" name="E11 · Registrar reporte no confirmado y motivo">
+      <bpmn:incoming>Flow_12</bpmn:incoming>
+      <bpmn:outgoing>Flow_18</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:serviceTask id="flag" name="E05 · Marcar versión afectada en revisión">
+      <bpmn:incoming>Flow_13</bpmn:incoming>
+      <bpmn:outgoing>Flow_8</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:exclusiveGateway id="can" name="¿Equipo puede corregir?">
+      <bpmn:incoming>Flow_8</bpmn:incoming>
+      <bpmn:outgoing>Flow_14</bpmn:outgoing>
+      <bpmn:outgoing>Flow_15</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:userTask id="fix" name="E06 · Crear versión corregida y revisarla">
+      <bpmn:incoming>Flow_14</bpmn:incoming>
+      <bpmn:outgoing>Flow_9</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:serviceTask id="publish" name="E07 · Publicar nueva versión con evidencia e historial">
+      <bpmn:incoming>Flow_9</bpmn:incoming>
+      <bpmn:outgoing>Flow_16</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:serviceTask id="withdraw" name="E08 · Retirar versión afectada y registrar motivo">
+      <bpmn:incoming>Flow_15</bpmn:incoming>
+      <bpmn:outgoing>Flow_17</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:exclusiveGateway id="merge" name="">
+      <bpmn:incoming>Flow_16</bpmn:incoming>
+      <bpmn:incoming>Flow_17</bpmn:incoming>
+      <bpmn:incoming>Flow_18</bpmn:incoming>
+      <bpmn:outgoing>Flow_10</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:serviceTask id="notify" name="E09 · Notificar resolución al estudiante">
+      <bpmn:incoming>Flow_10</bpmn:incoming>
+      <bpmn:outgoing>Flow_11</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:endEvent id="ce" name="Reporte resuelto">
+      <bpmn:incoming>Flow_11</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_5" sourceRef="c0" targetRef="register" />
+    <bpmn:sequenceFlow id="Flow_6" sourceRef="register" targetRef="review" />
+    <bpmn:sequenceFlow id="Flow_7" sourceRef="review" targetRef="confirmed" />
+    <bpmn:sequenceFlow id="Flow_8" sourceRef="flag" targetRef="can" />
+    <bpmn:sequenceFlow id="Flow_9" sourceRef="fix" targetRef="publish" />
+    <bpmn:sequenceFlow id="Flow_10" sourceRef="merge" targetRef="notify" />
+    <bpmn:sequenceFlow id="Flow_11" sourceRef="notify" targetRef="ce" />
+    <bpmn:sequenceFlow id="Flow_12" name="No" sourceRef="confirmed" targetRef="dismiss" />
+    <bpmn:sequenceFlow id="Flow_13" name="Sí" sourceRef="confirmed" targetRef="flag" />
+    <bpmn:sequenceFlow id="Flow_14" name="Sí" sourceRef="can" targetRef="fix" />
+    <bpmn:sequenceFlow id="Flow_15" name="No" sourceRef="can" targetRef="withdraw" />
+    <bpmn:sequenceFlow id="Flow_16" sourceRef="publish" targetRef="merge" />
+    <bpmn:sequenceFlow id="Flow_17" sourceRef="withdraw" targetRef="merge" />
+    <bpmn:sequenceFlow id="Flow_18" sourceRef="dismiss" targetRef="merge" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="Diagram_1" name="TO-BE · Reportar errores y mantener versiones">
+    <bpmndi:BPMNPlane id="Plane_1" bpmnElement="Collaboration_1">
+      <bpmndi:BPMNShape id="Pool_E_di" bpmnElement="Pool_E" isHorizontal="true">
+        <dc:Bounds x="40" y="60" width="2240" height="265" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_E_di" bpmnElement="Lane_E" isHorizontal="true">
+        <dc:Bounds x="70" y="60" width="2210" height="265" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="e0_di" bpmnElement="e0">
+        <dc:Bounds x="110" y="150" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="85" y="194" width="126" height="42" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="detail_di" bpmnElement="detail">
+        <dc:Bounds x="220" y="128" width="160" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="send_di" bpmnElement="send">
+        <dc:Bounds x="470" y="128" width="160" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="receive_di" bpmnElement="receive">
+        <dc:Bounds x="1890" y="128" width="160" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ee_di" bpmnElement="ee">
+        <dc:Bounds x="2180" y="150" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="2135" y="194" width="126" height="42" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_1_di" bpmnElement="Flow_1">
+        <di:waypoint x="146" y="168" />
+        <di:waypoint x="220" y="168" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_2_di" bpmnElement="Flow_2">
+        <di:waypoint x="380" y="168" />
+        <di:waypoint x="470" y="168" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_3_di" bpmnElement="Flow_3">
+        <di:waypoint x="630" y="168" />
+        <di:waypoint x="1890" y="168" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_4_di" bpmnElement="Flow_4">
+        <di:waypoint x="2050" y="168" />
+        <di:waypoint x="2180" y="168" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="Pool_C_di" bpmnElement="Pool_C" isHorizontal="true">
+        <dc:Bounds x="40" y="350" width="2240" height="620" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_C_di" bpmnElement="Lane_C" isHorizontal="true">
+        <dc:Bounds x="70" y="350" width="2210" height="620" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="c0_di" bpmnElement="c0">
+        <dc:Bounds x="532" y="430" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="487" y="474" width="126" height="42" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="register_di" bpmnElement="register">
+        <dc:Bounds x="670" y="408" width="160" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="review_di" bpmnElement="review">
+        <dc:Bounds x="890" y="408" width="160" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="confirmed_di" bpmnElement="confirmed" isMarkerVisible="true">
+        <dc:Bounds x="1110" y="423" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1065" y="481" width="140" height="42" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="dismiss_di" bpmnElement="dismiss">
+        <dc:Bounds x="1280" y="408" width="160" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="flag_di" bpmnElement="flag">
+        <dc:Bounds x="1080" y="638" width="160" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="can_di" bpmnElement="can" isMarkerVisible="true">
+        <dc:Bounds x="1310" y="653" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1265" y="711" width="140" height="42" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="fix_di" bpmnElement="fix">
+        <dc:Bounds x="1470" y="578" width="160" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="publish_di" bpmnElement="publish">
+        <dc:Bounds x="1680" y="578" width="160" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="withdraw_di" bpmnElement="withdraw">
+        <dc:Bounds x="1470" y="788" width="160" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="merge_di" bpmnElement="merge" isMarkerVisible="true">
+        <dc:Bounds x="1890" y="683" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1845" y="741" width="140" height="42" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="notify_di" bpmnElement="notify">
+        <dc:Bounds x="2010" y="668" width="160" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ce_di" bpmnElement="ce">
+        <dc:Bounds x="2200" y="690" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="2155" y="734" width="126" height="42" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_5_di" bpmnElement="Flow_5">
+        <di:waypoint x="568" y="448" />
+        <di:waypoint x="670" y="448" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_6_di" bpmnElement="Flow_6">
+        <di:waypoint x="830" y="448" />
+        <di:waypoint x="890" y="448" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_7_di" bpmnElement="Flow_7">
+        <di:waypoint x="1050" y="448" />
+        <di:waypoint x="1110" y="448" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_8_di" bpmnElement="Flow_8">
+        <di:waypoint x="1240" y="678" />
+        <di:waypoint x="1310" y="678" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_9_di" bpmnElement="Flow_9">
+        <di:waypoint x="1630" y="618" />
+        <di:waypoint x="1680" y="618" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_10_di" bpmnElement="Flow_10">
+        <di:waypoint x="1940" y="708" />
+        <di:waypoint x="2010" y="708" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_11_di" bpmnElement="Flow_11">
+        <di:waypoint x="2170" y="708" />
+        <di:waypoint x="2200" y="708" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_12_di" bpmnElement="Flow_12">
+        <di:waypoint x="1160" y="448" />
+        <di:waypoint x="1280" y="448" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1175" y="410" width="120" height="32" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_13_di" bpmnElement="Flow_13">
+        <di:waypoint x="1135" y="473" />
+        <di:waypoint x="1135" y="590" />
+        <di:waypoint x="1040" y="590" />
+        <di:waypoint x="1040" y="678" />
+        <di:waypoint x="1080" y="678" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="970" y="580" width="120" height="32" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_14_di" bpmnElement="Flow_14">
+        <di:waypoint x="1360" y="678" />
+        <di:waypoint x="1410" y="678" />
+        <di:waypoint x="1410" y="550" />
+        <di:waypoint x="1550" y="550" />
+        <di:waypoint x="1550" y="578" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1390" y="550" width="120" height="32" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_15_di" bpmnElement="Flow_15">
+        <di:waypoint x="1335" y="703" />
+        <di:waypoint x="1335" y="828" />
+        <di:waypoint x="1470" y="828" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1360" y="795" width="120" height="32" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_16_di" bpmnElement="Flow_16">
+        <di:waypoint x="1840" y="618" />
+        <di:waypoint x="1865" y="618" />
+        <di:waypoint x="1865" y="708" />
+        <di:waypoint x="1890" y="708" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_17_di" bpmnElement="Flow_17">
+        <di:waypoint x="1630" y="828" />
+        <di:waypoint x="1915" y="828" />
+        <di:waypoint x="1915" y="733" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_18_di" bpmnElement="Flow_18">
+        <di:waypoint x="1440" y="448" />
+        <di:waypoint x="1915" y="448" />
+        <di:waypoint x="1915" y="683" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Message_19_di" bpmnElement="Message_19">
+        <di:waypoint x="550" y="208" />
+        <di:waypoint x="550" y="430" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="565" y="285" width="120" height="32" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Message_20_di" bpmnElement="Message_20">
+        <di:waypoint x="2090" y="668" />
+        <di:waypoint x="2090" y="320" />
+        <di:waypoint x="1970" y="320" />
+        <di:waypoint x="1970" y="208" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="2020" y="280" width="120" height="32" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
