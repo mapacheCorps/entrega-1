@@ -14,16 +14,16 @@ Se propone centralizar aportes, revisión, publicación, búsqueda y mantenimien
 
 ## Criterios de la propuesta
 
-| ID | Criterio |
-|---|---|
-| D01 | Revisar antes de publicar; solo la versión aprobada entra al catálogo. |
-| D02 | Asignar la revisión a ayudantes habilitados por ramo; coordinación gestiona disponibilidad y autorización. |
-| D03 | Clasificar por carrera, ramo, período académico y tema o unidad. Período académico y nivel de carrera son conceptos distintos. |
-| D04 | Aplicar controles de archivo, formatos y tamaño configurables, y detección de duplicados. |
-| D05 | Generar un recordatorio no interruptivo a las 48 horas desde el inicio de la revisión. |
-| D06 | Mantener el identificador del aporte y crear una versión nueva al recibir correcciones. |
-| D07 | Investigar los reportes y corregir o retirar las versiones con errores confirmados. |
-| D08 | Aplicar las metas y condiciones de calidad definidas en el documento 06. |
+| ID | Criterio                                                                                                             |
+|---|----------------------------------------------------------------------------------------------------------------------|
+| D01 | Revisar antes de publicar; solo la versión aprobada entra al catálogo.                                               |
+| D02 | Asignar la revisión a ayudantes habilitados por ramo; coordinación gestiona disponibilidad y autorización.           |
+| D03 | Clasificar por carrera, ramo, período académico y tema o unidad.                                                     |
+| D04 | Aplicar controles de archivo, formatos y tamaño configurables, y detección de duplicados.                            |
+| D05 | Generar un recordatorio  a las 48 horas desde el inicio de la revisión de un apunte que no ha sido revisado todavía. |
+| D06 | Mantener el identificador del aporte y crear una versión nueva al recibir correcciones.                              |
+| D07 | Investigar los reportes y corregir o retirar las versiones con errores confirmados.                                  |
+| D08 | Aplicar las metas y condiciones de calidad definidas en el documento 06.                                             |
 
 ## Iniciativas de rediseño
 
