@@ -13,4 +13,3 @@ Torpedos universitarios es una propuesta de plataforma web para compartir y obte
 5. [Elicitación](./05-elicitacion.md)
 6. [Atributos de calidad](./06-atributos-calidad.md)
 7. [Coherencia y trazabilidad](./07-trazabilidad.md)
-8. [Organización y repositorio](./08-organizacion-github.md)
