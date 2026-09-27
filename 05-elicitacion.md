@@ -1,129 +1,88 @@
-# Acta de reunión de elicitación de requisitos
+# Elicitación de requisitos
 
-## 1. Fecha
-**22-09-2026**
+## Objetivo
 
-## 2. Participantes
-- **Entrevistador:** Ingeniero/a de Requisitos simulado/a por IA.
-- **Entrevistado:** Estudiante universitario, representando el rol de **usuario** del proyecto.
+Conocer cómo estudiantes universitarios buscan, comparten y evalúan apuntes de ramos anteriores, recoger su opinión sobre una plataforma web que organice este material y analizar la estructura actual de los repositorios informales que utilizan.
 
----
+## Técnica 1: Entrevista semiestructurada
 
-## 3. Problema identificado
+Se entrevistó a dos estudiantes que han necesitado y compartido apuntes, resúmenes y pruebas de asignaturas cursadas anteriormente.
 
-### Condición no satisfecha
-Actualmente, los estudiantes tienen dificultades para encontrar apuntes, torpedos y material académico correspondiente a asignaturas universitarias cursadas anteriormente.
+- **Participantes:**
+  - Felipe (Estudiante de 2do año, Ingeniería Civil en Informática).
+  - Catalina (Estudiante de 3er año, Ingeniería Civil en Informática).
+- **Fecha:** 22 de septiembre de 2026.
+- **Modalidad:** Entrevista presencial.
+- **Evidencias:** [Entrevista a Felipe](./evidencias/entrevista-estudiante-1.jpg) · [Entrevista a Catalina](./evidencias/entrevista-estudiante-2.jpg)
 
-El material se encuentra disperso y no existe un lugar centralizado donde pueda ser localizado fácilmente. Además, los estudiantes no siempre pueden determinar si los apuntes encontrados contienen información correcta o confiable.
+### Preguntas y respuestas obtenidas
 
-### Personas afectadas
-Los principales afectados son los **estudiantes universitarios** que necesitan material de apoyo para estudiar asignaturas.
+**Pregunta 1: ¿Cómo consigues actualmente apuntes de un ramo?**
+- **Felipe:** Pregunta en grupos de WhatsApp o Discord y revisa si algún compañero tiene un archivo guardado de semestres anteriores.
+- **Catalina:** Busca en conversaciones antiguas de WhatsApp, pero principalmente utiliza carpetas de Google Drive compartidas por estudiantes de cursos superiores donde guardan PPTs, PDFs, controles y pruebas de semestres pasados para estudiar.
+- **Hallazgo (ENT-01):** El material se distribuye de manera informal a través de mensajería (WhatsApp/Discord) o repositorios en la nube (Drive) heredados entre generaciones.
 
-### Cómo se maneja actualmente
-Actualmente, los estudiantes buscan el material de forma manual, principalmente mediante:
+**Pregunta 2: ¿Qué problemas tienes al buscar esos apuntes?**
+- **Felipe:** Muchas veces encuentra archivos sueltos en WhatsApp sin nombre claro y debe abrir varios documentos para saber a qué unidad corresponden.
+- **Catalina:** Aunque el Drive agrupa un poco la información, a veces los archivos están desordenados, hay versiones repetidas o no se especifica de qué año o profesor es el material.
+- **Hallazgo (ENT-02):** Falta una clasificación uniforme por carrera, ramo, período y tema o unidad que evite la duplicidad y confusión.
 
-- Amigos y conocidos.
-- Grupos de WhatsApp.
-- Grupos relacionados con la universidad.
+**Pregunta 3: ¿Cómo sabes si un apunte es confiable?**
+- **Felipe:** Pregunta quién lo hizo o si alguien del curso lo usó y le fue bien.
+- **Catalina:** Compara el contenido con las clases actuales, ya que en el Drive nadie certifica si una pauta de un control antiguo está 100% correcta.
+- **Hallazgo (ENT-03):** Los estudiantes necesitan conocer la procedencia del archivo y tener un indicador de revisión/confiabilidad.
 
-Este proceso puede resultar lento y engorroso, además de no entregar garantías respecto de la calidad o exactitud del material recibido.
+**Pregunta 4: ¿Qué te parecería una plataforma web para buscar y compartir apuntes?**
+- **Felipe:** Le sería muy útil si puede filtrar por carrera, ramo y tema, y descargar sin pedir permiso a un administrador.
+- **Catalina:** La usaría bastante si muestra una descripción del apunte, fecha, versión y, sobre todo, si centraliza lo que hoy está esparcido en distintos enlaces de Drive.
+- **Hallazgo (ENT-04):** La plataforma debe centralizar el material ofreciendo búsqueda estructurada, ficha descriptiva y descarga directa.
 
-### Objetivos del proyecto
-El proyecto busca:
+**Pregunta 5: ¿Qué debería ocurrir cuando alguien sube un apunte?**
+- **Felipe:** Se deberían solicitar los datos básicos del ramo y período antes de publicarlo.
+- **Catalina:** El archivo debería ser revisado y, si tiene errores, pedir una corrección antes de liberarlo para evitar estudiar con información mala.
+- **Hallazgo (ENT-05):** El flujo de publicación debe incluir clasificación obligatoria y una revisión académica previa.
 
-- Facilitar el acceso a apuntes y material académico.
-- Organizar el contenido de acuerdo con las asignaturas y sus respectivas materias o unidades.
-- Permitir que los estudiantes puedan encontrar material de manera más sencilla.
-- Aumentar la confianza en los apuntes mediante la revisión o aprobación de otras personas de la comunidad estudiantil.
+**Pregunta 6: ¿Qué harías si encuentras un error en un apunte publicado?**
+- **Felipe:** Avisaría del error indicando la página.
+- **Catalina:** Esperaría que un administrador baje el archivo malo, lo corrija o notifique que hay una versión actualizada.
+- **Hallazgo (ENT-06):** Es necesario un mecanismo de reportes y control de versiones transparente.
 
----
+## Técnica 2: Revisión documental
 
-## 4. Participantes del proceso y actividades principales
+Para complementar las entrevistas y entender cómo los estudiantes organizan sus repositorios informales actuales, se analizó una carpeta de Google Drive utilizada por estudiantes de la carrera.
 
-### Estudiante
-Corresponde al usuario común de la plataforma.
+- **Responsable:** Equipo del proyecto.
+- **Fecha de consulta:** 22 de septiembre de 2026.
+- **Fuente revisada:** Carpeta compartida de Google Drive genera por estudiantes.
+- **Evidencia:** [Captura de estructura en Drive](./evidencias/revision-drive.png)
 
-**Actividades principales:**
-- Buscar apuntes o material académico.
-- Subir apuntes o material académico para compartirlo con otros estudiantes.
+### Hallazgos de la revisión documental
 
-### Moderador / Ayudante de asignatura
-Corresponde a un estudiante que, además de poder realizar las actividades de un usuario común, participa en la revisión del contenido compartido.
+- **DOC-01 (Estructura de carpetas):** Se observa que los estudiantes intentan clasificar el material dividiéndolo en carpetas por unidades (ej. "Unidad ... e redes", "Unidad ... e datos"). Sin embargo, esta nomenclatura es inconsistente y puede generar problemas si se mezcla material de distintos ramos o semestres en una misma raíz.
+  *Consecuencia:* Confirma la necesidad de que la nueva plataforma aplique una taxonomía estricta (Carrera > Ramo > Período > Unidad).
+- **DOC-02 (Falta de metadatos):** En las plataformas de almacenamiento en la nube estándar (como Drive), solo se ve el nombre del archivo o carpeta. No hay etiquetas de validación, año del apunte o autor explícito a simple vista.
+  *Consecuencia:* Respalda fuertemente el requisito de una "Ficha del apunte" que muestre el estado de revisión, la versión y la procedencia.
 
-**Actividades principales:**
-- Buscar apuntes.
-- Subir apuntes.
-- Revisar el contenido de los apuntes publicados.
-- Determinar si el contenido revisado es adecuado y confiable.
+## Acta de acuerdo
 
----
+Al finalizar la sesión, se presentaron los hallazgos y las decisiones de diseño a los participantes para su confirmación.
 
-## 5. Requisitos de usuario identificados
+- **Participantes:** Felipe y Catalina.
+- **Fecha de confirmación:** 22 de septiembre de 2026.
+- **Acuerdos confirmados por los participantes:**
+  - Ambos concuerdan en que la estructura informal de WhatsApp y carpetas de Drive es insuficiente y apoyan la creación de un catálogo centralizado y filtrable.
+  - Están de acuerdo con que la plataforma exija datos de clasificación (Ramo, Unidad, Período) al subir un archivo.
+  - Validan la necesidad de que los apuntes pasen por una **revisión previa** antes de ser publicados, para asegurar la calidad de lo que estudian.
+  - Concuerdan en que deben existir reportes y un control de versiones si se corrige un archivo.
+- **Asuntos pendientes / Desacuerdos:** No se manifestaron desacuerdos con la propuesta TO-BE presentada.
 
-### Estudiante — búsqueda de material
+## Relación con los modelos del proyecto (Efecto sobre el proyecto)
 
-**RU-01.** El estudiante necesita poder encontrar fácilmente material correspondiente a una asignatura específica.
+La elicitación mixta (entrevista + revisión documental) confirma los problemas del proceso [AS-IS](./01-proceso-as-is.md): dispersión en chats y nubes, nombres inconsistentes y falta de evaluación de calidad.
 
-**RU-02.** El estudiante necesita poder localizar material correspondiente a una materia o unidad específica dentro de una asignatura.
+Asimismo, respalda las decisiones D01 a D08 integradas en el [TO-BE](./02-rediseno-to-be.md):
+- **D01, D02, D04:** El formulario de subida estructurado y la validación/revisión previa antes de publicar.
+- **D03:** La clasificación estricta (Carrera, Ramo, Período, Tema) supera el uso de carpetas sueltas.
+- **D06, D07:** La gestión de reportes y la necesidad de versiones para actualizar apuntes erróneos.
 
-Durante la entrevista también se identificó una posible derivación a nivel de sistema:
-
-**RS-01.** El sistema debe permitir que el material pueda ser identificado o localizado de acuerdo con su asignatura y materia o unidad.
-
----
-
-### Estudiante — confiabilidad del material
-
-**RU-03.** El estudiante necesita saber si un apunte ha sido revisado o respaldado por otras personas para poder evaluar su confiabilidad.
-
-Se identificó además el siguiente requisito a nivel de sistema:
-
-**RS-02.** El sistema debe informar el estado de revisión o aprobación de los apuntes.
-
-Durante la entrevista se mencionaron como posibles fuentes de validación los ayudantes de asignatura y la propia comunidad estudiantil.
-
----
-
-### Estudiante — publicación de material
-
-**RU-04.** El estudiante necesita que el material que comparte quede correctamente asociado a la asignatura correspondiente.
-
-**RU-05.** El estudiante necesita que el material quede asociado a la materia o unidad correspondiente para que pueda ser localizado posteriormente.
-
-**RU-06.** El estudiante necesita que el material compartido sea legible y utilizable por otros estudiantes.
-
-También se identificó una posible derivación a nivel de sistema:
-
-**RS-03.** El sistema debe permitir registrar la asignatura y la materia o unidad asociada al material publicado.
-
----
-
-### Moderador / Ayudante — revisión de material
-
-**RU-07.** El moderador necesita poder revisar el contenido de un apunte para determinar si es correcto y adecuado antes de considerarlo confiable.
-
-**RU-08.** El moderador necesita poder determinar si los ejercicios incluidos en un apunte están correctamente desarrollados.
-
-**RU-09.** El moderador necesita poder evaluar si el contenido del material es legible.
-
-**RU-10.** El moderador necesita poder evaluar si el contenido del material es fácil de comprender.
-
----
-
-## 6. Clasificación de requisitos identificados
-
-Durante la entrevista se distinguieron los siguientes niveles:
-
-- **Requisitos de usuario:** describen las necesidades de estudiantes y moderadores desde la perspectiva de lo que necesitan conseguir.
-- **Requisitos de sistema:** describen capacidades generales que el sistema deberá proporcionar para satisfacer algunas de esas necesidades.
-- **Requisitos de software:** durante esta sesión **no se definieron requisitos de software específicos**, ya que no se profundizó en comportamientos internos, componentes o mecanismos técnicos de implementación.
-
----
-
-## 7. Cierre de la reunión
-
-La sesión permitió identificar el problema principal del proyecto, los usuarios afectados, la forma en que actualmente se obtiene material académico, los principales participantes del proceso y un primer conjunto de requisitos de usuario.
-
-El entrevistado confirmó que, para esta sesión, el nivel de profundización alcanzado es suficiente y se procede al cierre de la reunión.
-
-Link ChatGPT: https://chatgpt.com/share/6ab31269-5030-83e9-912e-e3d55a32ea9d
+Estos hallazgos se reflejan directamente en los [requisitos de producto](./03-requisitos.md) y en las [historias de usuario](./04-historias-usuario.md).
