@@ -8,18 +8,18 @@ Se modelan dos procesos relacionados dentro del mismo alcance. El primero explic
 
 ## Ficha de proceso
 
-| Campo | Descripción |
-|---|---|
+| Campo | Descripción                                                                                       |
+|---|---------------------------------------------------------------------------------------------------|
 | Objetivo de negocio | Facilitar el intercambio y acceso a apuntes pertinentes para estudiar asignaturas universitarias. |
-| Inicio de compartir | Un estudiante dispone de un apunte que desea compartir. |
-| Fin de compartir | El apunte fue enviado y la comunidad lo guardó. |
-| Inicio de buscar | Un estudiante necesita material de una materia o unidad. |
-| Fin de buscar | Obtiene un apunte o termina sin material adecuado tras la respuesta de la comunidad. |
-| Entradas | Archivo del apunte, información disponible del ramo y necesidad de estudio. |
-| Salidas | Archivo compartido o material obtenido; no se presupone certificación de su corrección. |
-| Canales actuales descritos | Amigos y conocidos, grupos de WhatsApp y grupos universitarios. |
-| Responsable organizacional | Comunidad estudiantil. |
-| Límite | Intercambio y obtención de material; no incluye impartir clases ni evaluar aprendizajes. |
+| Inicio de compartir | Un estudiante dispone de un apunte que desea compartir.                                           |
+| Fin de compartir | El apunte fue enviado y la comunidad lo guardó.                                                   |
+| Inicio de buscar | Un estudiante necesita material de una materia o unidad.                                          |
+| Fin de buscar | Obtiene un apunte o termina sin material adecuado tras la respuesta de la comunidad.              |
+| Entradas | Archivo del apunte, información disponible del ramo y necesidad de estudio.                       |
+| Salidas | Archivo compartido o material obtenido; no se presupone certificación de su corrección.           |
+| Canales actuales descritos | Amigos y conocidos, grupos de WhatsApp o Discord.                                                 |
+| Responsable organizacional | Comunidad estudiantil.                                                                            |
+| Límite | Intercambio y obtención de material.                                                              |
 
 ## Participantes y sus objetivos
 
@@ -57,10 +57,10 @@ Los carriles delimitan la función de cada participante. Las secuencias permanec
 
 ## Problemas identificados
 
-| ID | Problema y fundamento | Participante y objetivo afectado |
-|---|---|---|
-| PR-01 | Material disperso en conversaciones y contactos; descrito en el acta de elicitación. | Estudiante: encontrar material pertinente sin revisar múltiples canales. |
-| PR-02 | Falta de información suficiente para evaluar la confiabilidad; descrito en el acta de elicitación. | Estudiante: saber qué revisión respalda un apunte. |
-| PR-03 | Clasificación inconsistente por ramo y unidad; hipótesis derivada de RU-01, RU-02, RU-04 y RU-05. | Estudiante y comunidad: ubicar y organizar material. |
-| PR-04 | Posible trabajo repetido al recibir, clasificar y reenviar archivos; hipótesis de trabajo. | Comunidad: gestionar los aportes con esfuerzo sostenible. |
+| ID | Problema y fundamento                                                                   | Participante y objetivo afectado |
+|---|-----------------------------------------------------------------------------------------|---|
+| PR-01 | Material disperso en conversaciones y contactos.                                        | Estudiante: encontrar material pertinente sin revisar múltiples canales. |
+| PR-02 | Falta de información suficiente para evaluar la confiabilidad.                          | Estudiante: saber qué revisión respalda un apunte. |
+| PR-03 | Clasificación inconsistente por ramo y unida                                            | Estudiante y comunidad: ubicar y organizar material. |
+| PR-04 | Posible trabajo repetido al recibir, clasificar y reenviar archivos.                    | Comunidad: gestionar los aportes con esfuerzo sostenible. |
 | PR-05 | Responsabilidades, correcciones y seguimiento poco definidos como hipótesis de trabajo. | Comunidad y autor: resolver aportes sin perder decisiones o versiones. |

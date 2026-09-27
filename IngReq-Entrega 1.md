@@ -2,7 +2,7 @@
 
 ## Proyecto
 
-**Torpedos universitarios** es una propuesta de plataforma web para compartir y obtener apuntes y resúmenes de estudio de períodos académicos anteriores. El material se organiza por carrera, ramo, período y tema o unidad. Se propone que la comunidad estudiantil gestione su revisión y publicación, mostrando la procedencia y el alcance de la revisión de cada versión.
+Torpedos universitarios es una propuesta de plataforma web para compartir y obtener apuntes y resúmenes de estudio de períodos académicos anteriores. El material se organiza por carrera, ramo, período y tema o unidad. Se propone que la comunidad estudiantil gestione su revisión y publicación, mostrando la procedencia y el alcance de la revisión de cada versión.
 
 ## Índice de documentos
 
