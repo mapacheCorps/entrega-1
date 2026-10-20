@@ -7,5 +7,5 @@ Documentación de Ingeniería de Requisitos, CIN324, Entrega 1.
 - Ignacio Rivera
 - Nicolas Lazcano
 - Sebastian Rojas
-- Rodrigo Sansa
+- Rodrigo Sances
 - Benjamín Isasmendi
