@@ -1,0 +1,45 @@
+@startuml
+title HU-05 - Notificar resolución de un aporte
+skinparam shadowing false
+skinparam backgroundColor white
+skinparam defaultFontName DejaVu Sans
+skinparam sequence {
+  ArrowColor #26638A
+  LifeLineBorderColor #7093AB
+  LifeLineBackgroundColor #F5F9FC
+  ParticipantBorderColor #2A5D85
+  ParticipantBackgroundColor #E6F2FB
+  ActorBorderColor #2A5D85
+  GroupBorderColor #647E93
+  GroupBackgroundColor #F5F8FB
+}
+
+autoactivate off
+actor "Ayudante\nhabilitado" as AYU
+participant "Torpedos\nuniversitarios" as SIS
+participant "Servicio externo\nde correo" as COR <<sistema externo>>
+actor "Autor del\naporte" as AUT
+
+AYU -> SIS : registrarDecisionFinal(aporteId, versionId,\ndecision, observaciones)
+note over AYU,SIS
+  La decisión pertenece al flujo de revisión (HU-03).
+  Se vincula a la versión exacta del aporte.
+  HU-05 comunica el resultado final al autor.
+end note
+
+alt [decisión = APROBADA y versión publicada]
+  SIS -> COR : enviarCorreo(autor, aporteId, versionId,\nenlacePublicacion)
+  COR --> SIS : solicitudAceptada(idMensaje)
+  COR -> AUT : correoDeAprobacion(enlacePublicacion)
+else [decisión = RECHAZADA]
+  SIS -> COR : enviarCorreo(autor, aporteId, versionId,\nmotivoRechazo)
+  COR --> SIS : solicitudAceptada(idMensaje)
+  COR -> AUT : correoDeRechazo(motivoRechazo)
+end
+
+note over SIS,COR
+  La aceptación del proveedor no garantiza
+  entrega efectiva al buzón del destinatario.
+  El correo es una integración propuesta.
+end note
+@enduml

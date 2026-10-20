@@ -1,0 +1,43 @@
+@startuml
+title Torpedos universitarios - Casos de uso (HU-01 y HU-05)
+left to right direction
+skinparam shadowing false
+skinparam backgroundColor white
+skinparam defaultFontName DejaVu Sans
+skinparam actorStyle awesome
+skinparam packageStyle rectangle
+skinparam usecase {
+  BackgroundColor #ECF5FF
+  BorderColor #2A5D85
+  ArrowColor #426D8F
+}
+
+actor "Estudiante / autor\ndel aporte" as AUT
+actor "Ayudante\nhabilitado" as AYU
+actor "Servicio externo de\nalmacenamiento" as ALM <<sistema externo>>
+actor "Servicio externo de\ncorreo electrónico" as COR <<sistema externo>>
+
+rectangle "Torpedos universitarios" {
+  usecase "CU-01\nEnviar y clasificar\nun aporte" as CU01
+  usecase "Validar datos y archivo" as VAL
+  usecase "Registrar decisión final\nde revisión" as REV
+  usecase "CU-02\nNotificar resolución\ndel aporte" as CU02
+}
+
+AUT -- CU01
+AUT -- CU02
+AYU -- REV
+ALM -- CU01
+COR -- CU02
+CU01 ..> VAL : <<include>>
+CU02 ..> REV : <<extend>>\n[decisión final registrada]
+
+note bottom of CU01
+  HU-01 | RP-01, RP-02
+  El archivo se guarda en un servicio externo.
+end note
+note bottom of CU02
+  HU-05 | RP-07
+  La aprobación informa el enlace; el rechazo, el motivo.
+end note
+@enduml

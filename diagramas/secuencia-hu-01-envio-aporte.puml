@@ -1,0 +1,53 @@
+@startuml
+title HU-01 - Enviar y clasificar un aporte
+skinparam shadowing false
+skinparam backgroundColor white
+skinparam defaultFontName DejaVu Sans
+skinparam sequence {
+  ArrowColor #26638A
+  LifeLineBorderColor #7093AB
+  LifeLineBackgroundColor #F5F9FC
+  ParticipantBorderColor #2A5D85
+  ParticipantBackgroundColor #E6F2FB
+  ActorBorderColor #2A5D85
+  GroupBorderColor #647E93
+  GroupBackgroundColor #F5F8FB
+}
+
+autoactivate off
+actor "Estudiante\ncolaborador" as EST
+participant "Torpedos\nuniversitarios" as SIS
+participant "Servicio externo de\nalmacenamiento" as ALM <<sistema externo>>
+
+EST -> SIS : enviarAporte(archivo, procedencia, carrera,\nramo, periodoAcademico, tema)
+note right of SIS
+  Se validan campos obligatorios, formato,
+  tamaño, archivo no vacío y duplicado exacto.
+  Una validación técnica no equivale a
+  aprobación académica.
+end note
+
+alt [datos válidos y sin duplicado exacto]
+  SIS -> ALM : guardarArchivo(archivo, aporteId, versionId)
+  alt [almacenamiento confirmado]
+    ALM --> SIS : referenciaArchivo
+    note right of SIS
+      Registrar el aporte y su versión.
+      Estado: pendiente de revisión.
+    end note
+    SIS --> EST : aporteRegistrado(aporteId, versionId, estado)
+  else [falla el almacenamiento]
+    ALM --> SIS : errorDeAlmacenamiento
+    SIS --> EST : informarErrorDeCarga(reintentar)
+  end
+else [faltan datos o archivo inválido]
+  SIS --> EST : informarErroresDeValidacion(detalle)
+else [duplicado exacto detectado]
+  SIS --> EST : informarCoincidencia(archivoExistente)
+end
+
+note over EST,ALM
+  Integración propuesta para esta actividad:
+  almacenamiento externo de archivos.
+end note
+@enduml
