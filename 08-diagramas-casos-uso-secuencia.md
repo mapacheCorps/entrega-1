@@ -93,21 +93,3 @@ Referencias existentes: [`04-historias-usuario.md`](04-historias-usuario.md), [`
 3. Se simplifica la lógica interna de persistencia: los diagramas de secuencia de sistema tratan Torpedos universitarios como una caja negra. No se añaden controladores, clases, tablas ni API que no estén especificados.
 4. El ayudante habilitado inicia CU-02 **indirectamente** mediante la decisión final registrada en el proceso de HU-03. El autor es destinatario de la notificación.
 5. El rechazo informa un motivo registrado, y la aprobación un enlace a la versión efectivamente publicada, según RP-07; ninguna validación de archivo se presenta como aprobación académica.
-
-## 6. Comprobación de la actividad
-
-- [x] Dos historias de usuario existentes (`HU-01`, `HU-05`).
-- [x] Una integración externa propuesta por historia, con responsabilidades diferenciadas.
-- [x] Un diagrama de casos de uso que muestra actores, sistema y externos.
-- [x] Un diagrama de secuencia por historia, con escenario principal y variante `alt`.
-- [x] Identificadores `CU-01` y `CU-02` con trazabilidad explícita.
-- [x] Fuentes editables `.puml` e imágenes `.png`.
-- [x] Nombres acordes al modelo existente (aporte, versión, revisión, publicación y resolución).
-- [ ] Validación del equipo sobre los dos **proveedores externos propuestos**, antes de afirmar que son decisiones definitivas de arquitectura.
-
-## 7. Cómo visualizar o modificar
-
-1. Abrir los archivos `.puml` en un editor con soporte PlantUML (por ejemplo, la extensión PlantUML en VS Code).
-2. Modificar los nombres o mensajes si el equipo acuerda proveedores distintos.
-3. Volver a exportar los `.puml` en PNG y reemplazar las imágenes de la misma carpeta.
-4. Revisar en GitHub que los tres enlaces de imágenes de este documento se abran correctamente.
