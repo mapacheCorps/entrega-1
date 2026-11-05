@@ -2,7 +2,7 @@
 
 Se especifican las once historias existentes en [Entrega 1](./04-historias-usuario.md). Los escenarios describen comportamientos del dominio; no prueban que el software esté implementado. Los servicios externos de almacenamiento/correo son propuestas de diseño.
 
-## HU-01 - Enviar y clasificar un aporte
+## HU-01 : Enviar y clasificar un aporte
 **Historia:** Como estudiante que aporta material, quiero adjuntar y clasificar mi apunte, para que la comunidad lo reciba con la información necesaria.
 
 **Origen:** [HU-01 en Entrega 1](./04-historias-usuario.md#hu-01).
@@ -31,7 +31,7 @@ Característica: Recepción de aporte
 
 ```
 
-## HU-02 - Asignar responsable de revisión
+## HU-02 : Asignar responsable de revisión
 **Historia:** Como integrante de la comunidad estudiantil, quiero organizar las revisiones de aportes, para que ningún envío quede sin evaluación.
 
 **Origen:** [HU-02 en Entrega 1](./04-historias-usuario.md#hu-02).
@@ -55,7 +55,7 @@ Característica: Asignación de revisiones
 
 ```
 
-## HU-03: Registrar revisión comunitaria
+## HU-03 : Registrar revisión comunitaria
 **Historia:** Como integrante de la comunidad estudiantil, quiero registrar una decisión fundamentada sobre una versión, para aprobarla y publicarla o rechazarla con feedback.
 
 **Origen:** [HU-03 en Entrega 1](./04-historias-usuario.md#hu-03).
@@ -86,7 +86,7 @@ Característica: Decisión de revisión académica
 
 ```
 
-## HU-04 - Enviar una versión corregida
+## HU-04 : Enviar una versión corregida
 **Historia:** Como autor de un aporte, quiero recibir observaciones y enviar una versión corregida, para resolver problemas sin perder el historial.
 
 **Origen:** [HU-04 en Entrega 1](./04-historias-usuario.md#hu-04).
@@ -110,7 +110,7 @@ Característica: Corrección del aporte
 
 ```
 
-## HU-05 - Conocer resolución del aporte
+## HU-05 : Conocer resolución del aporte
 **Historia:** Como autor de un aporte, quiero conocer la resolución de mi envío, para saber si se publicó o por qué fue rechazado.
 
 **Origen:** [HU-05 en Entrega 1](./04-historias-usuario.md#hu-05).
@@ -141,7 +141,7 @@ Característica: Comunicación de la resolución
 
 ```
 
-## HU-06 - Buscar apuntes publicados
+## HU-06 : Buscar apuntes publicados
 **Historia:** Como estudiante que busca material, quiero filtrar los apuntes publicados por ramo, período y tema, para encontrar material pertinente.
 
 **Origen:** [HU-06 en Entrega 1](./04-historias-usuario.md#hu-06).
@@ -163,7 +163,7 @@ Característica: Búsqueda de material
 
 ```
 
-## HU-07 - Consultar ficha de revisión
+## HU-07 : Consultar ficha de revisión
 **Historia:** Como estudiante que consulta un apunte, quiero ver su procedencia y la revisión de la versión disponible, para valorar su pertinencia y confiabilidad.
 
 **Origen:** [HU-07 en Entrega 1](./04-historias-usuario.md#hu-07).
@@ -185,7 +185,7 @@ Característica: Consulta de ficha de apunte
 
 ```
 
-## HU-08 - Obtener apunte
+## HU-08 : Obtener apunte
 **Historia:** Como estudiante que consulta material, quiero obtener el archivo que seleccioné, para utilizarlo para estudiar.
 
 **Origen:** [HU-08 en Entrega 1](./04-historias-usuario.md#hu-08).
@@ -208,7 +208,7 @@ Característica: Obtención de una versión
 
 ```
 
-## HU-09 - Reportar posible error
+## HU-09 : Reportar posible error
 **Historia:** Como estudiante que detecta un posible error, quiero reportarlo y conocer su resolución, para ayudar a mantener la calidad del material.
 
 **Origen:** [HU-09 en Entrega 1](./04-historias-usuario.md#hu-09).
@@ -238,7 +238,7 @@ Característica: Reporte de errores
 
 ```
 
-## HU-10 - Recibir alerta de demora
+## HU-10 : Recibir alerta de demora
 **Historia:** Como integrante de la comunidad estudiantil, quiero conocer revisiones demoradas, para organizar el trabajo pendiente.
 
 **Origen:** [HU-10 en Entrega 1](./04-historias-usuario.md#hu-10).
@@ -260,7 +260,7 @@ Característica: Seguimiento de revisiones
 
 ```
 
-## HU-11 - Corregir o retirar versión con error
+## HU-11 : Corregir o retirar versión con error
 **Historia:** Como integrante de la comunidad estudiantil, quiero coordinar la corrección o retirada de una versión con errores confirmados, para evitar distribuir material defectuoso.
 
 **Origen:** [HU-11 en Entrega 1](./04-historias-usuario.md#hu-11).
