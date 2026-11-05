@@ -26,7 +26,7 @@ Referencias existentes: [`04-historias-usuario.md`](04-historias-usuario.md), [`
 
 **Relaciones UML:** CU-01 **incluye** validar los datos y el archivo porque toda solicitud se valida, incluso cuando se rechaza. CU-02 **extiende** registrar una decisión de revisión cuando existe una decisión final de aprobación o rechazo. La notificación no determina la aprobación; comunica una decisión previamente registrada.
 
-## 3. CU-01 — Enviar y clasificar un aporte (HU-01)
+## 3. CU-01 : Enviar y clasificar un aporte (HU-01)
 
 **Historia original:** «Como estudiante que aporta material, quiero adjuntar y clasificar mi apunte, para que la comunidad lo reciba con la información necesaria».
 
@@ -55,7 +55,7 @@ Referencias existentes: [`04-historias-usuario.md`](04-historias-usuario.md), [`
 
 **Trazabilidad:** HU-01 → CU-01 → RP-01/RP-02 → actividades TO-BE P01–P04 y P07 (validación/corrección de datos) → diagrama de secuencia HU-01.
 
-## 4. CU-02 — Notificar resolución del aporte (HU-05)
+## 4. CU-02 : Notificar resolución del aporte (HU-05)
 
 **Historia original:** «Como autor de un aporte, quiero conocer la resolución de mi envío, para saber si se publicó o por qué fue rechazado».
 
