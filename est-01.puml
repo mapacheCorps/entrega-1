@@ -1,0 +1,18 @@
+@startuml
+skinparam shadowing false
+title EST-01: Ciclo de vida de VersionApunte
+[*] --> Recibida : registrarVersion
+Recibida --> PendienteRevision : validarAporte [archivo y clasificacion validos]
+Recibida --> RequiereCorreccion : validarAporte [archivo o clasificacion invalidos]
+PendienteRevision --> EnRevision : iniciarRevisionComunitaria
+EnRevision --> Aprobada : registrarDecision [comunidad aprueba]
+EnRevision --> Rechazada : registrarDecision [comunidad rechaza] / guardarFeedback
+Aprobada --> Publicada : publicarVersion
+Publicada --> BajoInvestigacion : confirmarReporteDeError
+BajoInvestigacion --> Retirada : retirarVersion [error no corregible]
+BajoInvestigacion --> Sustituida : publicarVersionCorregida [nueva version aprobada]
+RequiereCorreccion --> [*] : reemplazarPorNuevaVersion
+Rechazada --> [*] : cerrarVersionConFeedback
+Retirada --> [*] : cerrarVersion
+Sustituida --> [*] : cerrarVersion
+@enduml

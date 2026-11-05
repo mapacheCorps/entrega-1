@@ -1,0 +1,28 @@
+@startuml
+skinparam shadowing false
+title DSS-02: Resolver revision y comunicar feedback (HU-03 / HU-05)
+actor "Comunidad estudiantil" as COM
+participant "Torpedos universitarios\n(caja negra)" as SIS
+participant "Servicio externo de correo\n(propuesto)" as COR <<sistema externo>>
+actor "Estudiante autor" as AUT
+COM -> SIS : Registrar decision sobre la version y observaciones
+alt Aporte aprobado por la comunidad
+  SIS --> COM : Confirmar aprobacion y publicacion de la version
+  SIS -> COR : Solicitar aviso de aprobacion y enlace publicado
+else Aporte rechazado por la comunidad
+  SIS --> COM : Confirmar rechazo, sin publicar la version
+  SIS -> COR : Solicitar aviso de rechazo y retroalimentacion
+end
+alt Servicio acepta el aviso
+  COR --> SIS : Confirmar aceptacion para envio
+  COR -> AUT : Comunicar decision y observaciones de la comunidad
+else Servicio no acepta el aviso
+  COR --> SIS : Informar fallo del aviso
+  SIS --> COM : Conservar decision y registrar aviso pendiente
+end
+note over SIS,AUT
+  Un rechazo incluye feedback para que el autor pueda
+  corregir y presentar una nueva version para revision.
+  El correo externo es una integracion propuesta.
+end note
+@enduml

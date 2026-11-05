@@ -1,0 +1,12 @@
+@startuml
+skinparam shadowing false
+title EST-02 - Ciclo de vida de Notificacion
+[*] --> Pendiente : registrarResultado
+Pendiente --> EnEnvio : solicitarEntrega
+EnEnvio --> AceptadaPorServicio : confirmarAceptacionServicio
+EnEnvio --> Fallida : informarFalloEntrega
+Fallida --> EnEnvio : reintentar [reintentos disponibles]
+Fallida --> Agotada : cerrarIntentos [sin reintentos]
+AceptadaPorServicio --> [*] : archivarConstancia
+Agotada --> [*] : registrarIncidencia
+@enduml

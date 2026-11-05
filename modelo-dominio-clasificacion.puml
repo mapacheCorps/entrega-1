@@ -1,0 +1,40 @@
+@startuml
+!theme plain
+skinparam shadowing false
+skinparam classAttributeIconSize 0
+hide methods
+hide circle
+title MODELO DE DOMINIO UML  |  3. CLASIFICACION ACADEMICA
+
+class Aporte {
+  identificador: texto
+  fechaEnvio: fecha
+  procedenciaDeclarada: texto
+  estado: texto
+}
+
+class Carrera {
+  codigo: texto
+  nombre: texto
+}
+
+class Ramo {
+  codigo: texto
+  nombre: texto
+}
+
+class PeriodoAcademico {
+  anio: entero
+  semestre: entero
+}
+
+class TemaUnidad {
+  numero: entero
+  nombre: texto
+}
+
+Aporte "0..*" -- "1" Ramo : corresponde a
+Aporte "0..*" -- "1" PeriodoAcademico : indica
+Ramo "0..*" -- "1" Carrera : pertenece a
+Ramo "1" -- "0..*" TemaUnidad : comprende
+@enduml

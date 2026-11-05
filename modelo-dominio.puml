@@ -1,0 +1,46 @@
+@startuml
+!theme plain
+skinparam shadowing false
+skinparam classAttributeIconSize 0
+hide methods
+hide circle
+title MODELO DE DOMINIO UML  |  1. APORTE Y REVISION
+
+class ComunidadEstudiantil {
+  identificador: texto
+  nombre: texto
+}
+
+class Estudiante {
+  identificador: texto
+  nombre: texto
+  correo: texto
+}
+
+class Aporte {
+  identificador: texto
+  fechaEnvio: fecha
+  procedenciaDeclarada: texto
+  estado: texto
+}
+
+class VersionApunte {
+  numero: entero
+  nombreArchivo: texto
+  referenciaArchivo: texto
+  estado: texto
+}
+
+class RevisionAcademica {
+  identificador: texto
+  fecha: fecha
+  decision: texto
+  retroalimentacion: texto
+}
+
+ComunidadEstudiantil "1" o-- "1..*" Estudiante : agrupa
+Estudiante "1" -- "0..*" Aporte : presenta
+Aporte "1" *-- "1..*" VersionApunte : contiene
+VersionApunte "1" *-- "0..*" RevisionAcademica : conserva
+ComunidadEstudiantil "1" -- "0..*" RevisionAcademica : decide
+@enduml

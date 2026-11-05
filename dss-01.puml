@@ -1,0 +1,24 @@
+@startuml
+skinparam shadowing false
+title DSS-01: Presentar aporte (HU-01 / CU-01)
+actor "Estudiante autor" as AUT
+participant "Torpedos universitarios\n(caja negra)" as SIS
+participant "Servicio externo de\nalmacenamiento (propuesto)" as ALM <<sistema externo>>
+AUT -> SIS : Presentar apunte y clasificacion academica
+alt Datos y archivo validos
+  SIS -> ALM : Solicitar resguardo del archivo del aporte
+  alt Archivo resguardado
+    ALM --> SIS : Confirmar resguardo y referencia
+    SIS --> AUT : Aporte recibido, pendiente de revision comunitaria
+  else Fallo del servicio
+    ALM --> SIS : Informar resguardo fallido
+    SIS --> AUT : Informar fallo, sin confirmar el envio
+  end
+else Archivo o clasificacion invalidos
+  SIS --> AUT : Informar motivo y solicitar correccion
+end
+note over SIS,ALM
+  Integracion propuesta, no implementacion confirmada.
+  Recibir un aporte no implica publicarlo.
+end note
+@enduml
